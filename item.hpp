@@ -7,23 +7,22 @@ private:
     int _val;
 
 public:
-    Item(int key = 0, int val = 0) : _key(key), _val(val) {}
-
-    bool operator>(const Item& other) const {
-        return _val > other._val;
+    Item(){
+        _key = 0;
+        _val = 0;
     }
 
-    int getKey() const {
-        return _key;
+    Item(int key, int val){
+        _key = key;
+        _val = val;
     }
 
-    int getVal() const {
-        return _val;
+    friend bool operator>(const Item &i1, const Item &i2) {
+        return i1._val > i2._val;
     }
 
+    friend std::ostream & operator<<(std::ostream &out, const Item &i) {
+        out << "(" << i._key << "," << i._val << ")";
+        return out;
+    }
 };
-
-ostream& operator<<(ostream& out, const Item& item) {
-    out << "(" << item.getKey() << ", " << item.getVal() << ")";
-    return out;
-}
